@@ -1,0 +1,36 @@
+<p-dialog header="Candidate Form" [(visible)]="visible" [modal]="true" [style]="{ width: '500px' }" (onHide)="onCancel()">
+  <form [formGroup]="form" (ngSubmit)="save()">
+    <div class="p-fluid">
+      <div class="p-field">
+        <label for="fullName">Full Name</label>
+        <input id="fullName" type="text" pInputText formControlName="fullName" />
+      </div>
+
+      <div class="p-field">
+        <label for="email">Email</label>
+        <input id="email" type="email" pInputText formControlName="email" />
+      </div>
+
+      <div class="p-field">
+        <label for="jobPositionId">Job Position</label>
+        <p-dropdown
+          [options]="jobPositions"
+          optionLabel="title"
+          optionValue="id"
+          formControlName="jobPositionId"
+          placeholder="Select Job Position"
+        ></p-dropdown>
+      </div>
+
+      <div class="p-field">
+        <label for="resume">Resume (pdf/docx/png/jpg)</label>
+        <input type="file" (change)="onFileChange($event)" />
+      </div>
+    </div>
+
+    <p-footer style="padding-top: 10px;">
+      <button pButton type="submit" label="Save" [disabled]="form.invalid"></button>
+      <button pButton type="button" label="Cancel" class="p-button-secondary" (click)="onCancel()"></button>
+    </p-footer>
+  </form>
+</p-dialog>

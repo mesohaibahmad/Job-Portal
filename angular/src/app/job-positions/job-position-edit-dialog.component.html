@@ -1,0 +1,86 @@
+<!-- <p-dialog
+header="{{ data?.id ? 'Edit Job Position' : 'Create Job Position' }}"
+[(visible)]="visible"
+[modal]="true"
+[responsive]="true"
+[style]="{ width: '500px' }"
+(onHide)="onCancel()"
+>
+<form [formGroup]="form"> <div class="p-fluid"> <div class="p-field"> <label for="title">Title</label> <input id="title" type="text" pInputText formControlName="title" /> </div>
+
+  <div class="p-field">
+    <label for="description">Description</label>
+    <textarea id="description" pInputTextarea formControlName="description"></textarea>
+  </div>
+
+  <div class="p-field-checkbox">
+    <p-checkbox inputId="isActive" formControlName="isActive" binary="true"></p-checkbox>
+    <label for="isActive">Active</label>
+  </div>
+</div>
+</form> <ng-template pTemplate="footer"> <button pButton type="button" label="Cancel" class="p-button-text" (click)="onCancel()"></button> <button pButton type="button" label="Save" (click)="onSave()" [disabled]="form.invalid"></button> </ng-template> </p-dialog> -->
+
+<p-dialog
+  header="{{ data?.id ? 'Edit Job Position' : 'Create Job Position' }}"
+  [(visible)]="visible"
+  [modal]="true"
+  [responsive]="true"
+  [style]="{ width: '500px' }"
+  (onHide)="onCancel()"
+>
+  <form [formGroup]="form">
+    <div class="p-fluid p-formgrid p-grid">
+      
+      <!-- Title -->
+      <div class="p-field p-col-12">
+        <label for="title">Title</label>
+        <input
+          id="title"
+          type="text"
+          pInputText
+          formControlName="title"
+        />
+      </div>
+
+      <!-- Description -->
+      <div class="p-field p-col-12">
+        <label for="description">Description</label>
+        <textarea
+          id="description"
+          pInputTextarea
+          formControlName="description"
+          rows="4"
+        ></textarea>
+      </div>
+
+      <!-- Active Checkbox -->
+      <div class="p-field-checkbox p-col-12">
+        <p-checkbox
+          inputId="isActive"
+          formControlName="isActive"
+          binary="true"
+        ></p-checkbox>
+        <label for="isActive" class="ml-2">Active</label>
+      </div>
+
+    </div>
+  </form>
+
+  <!-- Footer -->
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      type="button"
+      label="Cancel"
+      class="p-button-text"
+      (click)="onCancel()"
+    ></button>
+    <button
+      pButton
+      type="button"
+      label="Save"
+      (click)="onSave()"
+      [disabled]="form.invalid"
+    ></button>
+  </ng-template>
+</p-dialog>

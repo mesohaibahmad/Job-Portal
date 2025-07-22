@@ -1,0 +1,56 @@
+<div class="card"> <div class="p-mb-3"> <button pButton label="Create" icon="pi pi-plus" class="p-button-success" (click)="openCreateDialog()"></button> </div>
+
+<p-table
+[value]="jobPositions"
+[paginator]="true"
+[rows]="pageSize"
+[totalRecords]="totalCount"
+[lazy]="true"
+(onLazyLoad)="loadData($event)"
+[loading]="loading"
+[rowsPerPageOptions]="[5,10,20]"
+[responsive]="true"
+[sortField]="sorting.split(' ')[0]"
+[sortOrder]="sorting.includes('DESC') ? -1 : 1">
+
+
+
+<ng-template pTemplate="header">
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Status</th>
+    <th style="width: 120px;">Actions</th>
+  </tr>
+</ng-template>
+
+<ng-template pTemplate="body" let-job>
+  <tr>
+    <td>{{ job.title }}</td>
+    <td>{{ job.description }}</td>
+    <td>
+      <span class="badge" [ngClass]="{ 'bg-success': job.isActive, 'bg-danger': !job.isActive }">
+        {{ job.isActive ? 'Active' : 'Inactive' }}
+      </span>
+    </td>
+    <td>
+      <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2" (click)="openEditDialog(job)"></button>
+      <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteJob(job.id)"></button>
+    </td>
+  </tr>
+</ng-template>
+<ng-template pTemplate="emptymessage">
+  <tr>
+    <td colspan="4" class="text-center">No job positions found.</td>
+  </tr>
+</ng-template>
+</p-table>
+<app-job-position-edit-dialog
+[(visible)]="dialogVisible"
+(onClose)="onDialogClose()"
+(onSaved)="onDialogSaved()"
+[data]="selectedJob"
+>
+</app-job-position-edit-dialog>
+
+</div>

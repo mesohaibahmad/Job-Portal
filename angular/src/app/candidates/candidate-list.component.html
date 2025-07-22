@@ -1,0 +1,51 @@
+<div class="p-inputgroup mb-3">
+  <input type="text" pInputText [(ngModel)]="keyword" placeholder="Search candidates..." />
+  <button pButton type="button" icon="pi pi-search" (click)="onSearch()"></button>
+</div>
+<p-button label="Add Candidate" icon="pi pi-plus" (click)="openCreateModal()"></p-button>
+
+<p-table
+  [value]="candidates"
+  [paginator]="true"
+  [rows]="pageSize"
+  [totalRecords]="totalCount"
+  [lazy]="true"
+  [loading]="loading"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Job Position</th>
+      <th>Resume</th>
+      <th style="width: 120px;">Actions</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-candidate>
+    <tr>
+      <td>{{ candidate.fullName }}</td>
+      <td>{{ candidate.email }}</td>
+      <td>{{ candidate.jobPositionTitle }}</td>
+      <td>
+        <a *ngIf="candidate.resumePath" [href]="candidate.resumePath" target="_blank">Download</a>
+      </td>
+       <td>
+      <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2" (click)="openEditDialog(candidate)"></button>
+      <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteCandidate(candidate.id)"></button>
+    </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+  <tr>
+    <td colspan="4" class="text-center">No job positions found.</td>
+  </tr>
+</ng-template>
+</p-table>
+
+<app-candidate-create-edit
+  [visible]="dialogVisible"
+ (onClose)="onDialogClose()"
+(onSaved)="onDialogSaved()"
+[data]="selectedCandidate"
+></app-candidate-create-edit>
