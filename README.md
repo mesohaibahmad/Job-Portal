@@ -67,18 +67,17 @@ A full-stack web application for managing job positions and candidate applicatio
 ### 🔹 Host Admin
 - **Tenant**: Leave blank
 - **Username**: `admin`
-- **Password**: `123qwe*`
+- **Password**: `123qwe`
 
 ### 🔹 Default Tenant Admin
 - **Tenant**: `Default`
 - **Username**: `admin`
-- **Password**: `123qwe*`
+- **Password**: `123qwe`
 
 ---
 
 ## 🔐 Features
 
-- ✅ Multi-tenancy with custom tenant settings (e.g., MaxApplicantsPerPosition)
 - ✅ Job position and candidate management (CRUD)
 - ✅ File upload for resumes
 - ✅ Role/Permission control ( Tenant, Admin, Recruiter)
